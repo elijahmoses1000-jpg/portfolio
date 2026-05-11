@@ -274,7 +274,7 @@
     <span class="status"><span class="pulse"></span> Building VerionX · Open to founder collaborations</span>
     <div class="eyebrow">Founder · Digital Strategist · Innovator · Global Citizen · Lagos, Nigeria</div>
     <h1 class="headline">
-      Making learning <span class="ital">fun</span><br/>
+      Making learning <span class="ital">addictive</span><br/>
       &amp; <span class="underline">opportunity</span> <span class="ital">accessible</span>—<br/>
       with <span class="ital">AI</span> &amp; end-to-end automation.
     </h1>
@@ -475,7 +475,7 @@
           <div class="field-err">Don't be shy — even a sentence works.</div>
         </div>
         <button class="btn btn-primary ct-submit" type="submit">Send message <span class="arrow">→</span></button>
-        <div class="form-success">Got it. I'll reply shortly — thanks! </div>
+        <div class="form-success">Got it. I'll reply within 48 hours — usually faster. ✦</div>
       </form>
     </div>
   </div>
@@ -787,7 +787,7 @@ document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
 /* ---------- form ---------- */
 const form = document.getElementById("ctForm");
-form.addEventListener("submit",e=>{
+form.addEventListener("submit", async e=>{
   e.preventDefault();
   let valid = true;
   ["name","email","msg"].forEach(n=>{
@@ -799,7 +799,27 @@ form.addEventListener("submit",e=>{
     if(bad) valid = false;
   });
   if(!valid) return;
-  form.classList.add("sent");
+  const btn = form.querySelector(".ct-submit");
+  btn.disabled = true;
+  btn.textContent = "Sending…";
+  try{
+    const res = await fetch("https://formspree.io/f/xnjwlzzr",{
+      method:"POST",
+      headers:{"Accept":"application/json"},
+      body: new FormData(form)
+    });
+    if(res.ok){
+      form.classList.add("sent");
+    } else {
+      btn.disabled = false;
+      btn.innerHTML = "Send message <span class='arrow'>→</span>";
+      alert("Something went wrong. Please email Elijahmoses1000@gmail.com directly.");
+    }
+  }catch{
+    btn.disabled = false;
+    btn.innerHTML = "Send message <span class='arrow'>→</span>";
+    alert("Network error. Please email Elijahmoses1000@gmail.com directly.");
+  }
 });
 form.querySelectorAll("input,textarea").forEach(i=>{
   i.addEventListener("input",()=>i.closest(".field").classList.remove("invalid"));
