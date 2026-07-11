@@ -4,6 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Elijah Moses Iyajini — Founder, Venture Builder, Growth Hacker</title>
+<meta name="description" content="Elijah Moses Iyajini — Founder & CMO of VerionX, Head of Partnership at RLabs Nigeria, builder of 40+ intelligent AI systems including ZeusX, OmegaX, OkamX, FinX, LawX, and Cocomilla. 45,000+ students engaged. Lagos, Nigeria." />
+<meta property="og:title" content="Elijah Moses Iyajini — Founder, Venture Builder, Growth Hacker" />
+<meta property="og:description" content="9+ years across venture building, growth, grant writing, and AI automation. 45,000+ students engaged through VerionX. 40+ intelligent AI systems shipped." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230e0d0b'/><text x='50' y='72' text-anchor='middle' font-family='Georgia,serif' font-size='60' fill='%23e8a04a'>E</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -166,6 +172,13 @@
   .edu .edu-yr{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
   .edu .edu-nm{font-family:var(--serif);font-size:20px;line-height:1.2;letter-spacing:-.01em;margin-bottom:4px}
   .edu .edu-sc{font-size:13.5px;color:var(--ink-2)}
+
+  /* pull quote */
+  .quote-card{margin:72px 0 0;padding:48px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,var(--bg-2),var(--bg-3))}
+  @media (max-width:720px){.quote-card{padding:28px}}
+  .quote-card blockquote{margin:0;font-family:var(--serif);font-size:clamp(24px,3.2vw,38px);line-height:1.3;font-weight:300;letter-spacing:-.01em;text-wrap:pretty}
+  .quote-card blockquote em{font-style:italic;color:var(--accent)}
+  .quote-card figcaption{margin-top:20px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
 
   /* timeline / achievements */
   .achievements{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
@@ -396,6 +409,17 @@
       <h2 class="sec-title"><em>Fellowships</em>, ambassadorships, and recognition along the way.</h2>
     </div>
     <div class="achievements" id="achList"></div>
+
+    <div class="sec-head reveal" style="margin-top:88px">
+      <div class="sec-num">— Fellowships</div>
+      <h2 class="sec-title" style="font-size:clamp(28px,4vw,44px)">Leadership &amp; fellowship <em>programs</em>.</h2>
+    </div>
+    <div class="edu-grid reveal" id="fellowGrid"></div>
+
+    <figure class="quote-card reveal">
+      <blockquote>“No matter how isolated you are and how lonely you feel, if you do your work truly and conscientiously, unknown friends — <em>and opportunities</em> — will come and seek you.”</blockquote>
+      <figcaption>Carl Gustav Jung</figcaption>
+    </figure>
 
     <div class="sec-head reveal" style="margin-top:88px">
       <div class="sec-num">— Education</div>
@@ -692,7 +716,7 @@ const PROJECTS = [
     title:"World Literacy Foundation",
     tagline:"Ambassador for Nigeria — advocacy for global literacy and equitable digital learning.",
     role:"Country Ambassador",
-    year:"2024 — present",
+    year:"2021 — present",
     tags:["Advocacy","Policy","Literacy"],
     img:"WLF — ambassador program",
     body:[
@@ -808,6 +832,14 @@ ACHIEVEMENTS.forEach(a=>{
   el.className = "ach reveal";
   el.innerHTML = `<div class="yr">${a.yr}</div><div class="nm">${a.nm}</div><div class="desc">${a.desc}</div>`;
   achList.appendChild(el);
+});
+
+const fellowGrid = document.getElementById("fellowGrid");
+FELLOWSHIPS.forEach(f=>{
+  const el = document.createElement("div");
+  el.className = "edu";
+  el.innerHTML = `<div class="edu-yr">${f.yr}</div><div class="edu-nm">${f.nm}</div><div class="edu-sc">${f.org}</div>`;
+  fellowGrid.appendChild(el);
 });
 
 const xpList = document.getElementById("xpList");
